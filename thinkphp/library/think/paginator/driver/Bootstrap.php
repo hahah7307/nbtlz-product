@@ -135,7 +135,7 @@ class Bootstrap extends Paginator
      */
     protected function getAvailablePageWrapper($url, $page)
     {
-        return '<a href="' . htmlentities($url) . '"><li>' . $page . '</li></a>';
+        return '<li><a href="' . htmlentities($url) . '">' . $page . '</a></li>';
     }
 
     /**

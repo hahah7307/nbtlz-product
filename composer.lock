@@ -4,27 +4,815 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "ba81097bd3bedb9a9265465b0f578307",
+    "content-hash": "1ee0835154d4bd287f8681d8dad7d864",
     "packages": [
         {
-            "name": "topthink/framework",
-            "version": "v5.0.21",
+            "name": "adbario/php-dot-notation",
+            "version": "2.5.0",
             "source": {
                 "type": "git",
-                "url": "https://github.com/top-think/framework.git",
-                "reference": "ab826da071a7a47116a7f1d01f72228d6bcf212a"
+                "url": "https://github.com/adbario/php-dot-notation.git",
+                "reference": "081e2cca50c84bfeeea2e3ef9b2c8d206d80ccae"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/top-think/framework/zipball/ab826da071a7a47116a7f1d01f72228d6bcf212a",
-                "reference": "ab826da071a7a47116a7f1d01f72228d6bcf212a",
-                "shasum": "",
-                "mirrors": [
-                    {
-                        "url": "https://dl.laravel-china.org/%package%/%reference%.%type%",
-                        "preferred": true
-                    }
+                "url": "https://api.github.com/repos/adbario/php-dot-notation/zipball/081e2cca50c84bfeeea2e3ef9b2c8d206d80ccae",
+                "reference": "081e2cca50c84bfeeea2e3ef9b2c8d206d80ccae",
+                "shasum": ""
+            },
+            "require": {
+                "ext-json": "*",
+                "php": "^5.5 || ^7.0 || ^8.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^4.8|^5.7|^6.6|^7.5|^8.5|^9.5",
+                "squizlabs/php_codesniffer": "^3.6"
+            },
+            "type": "library",
+            "autoload": {
+                "files": [
+                    "src/helpers.php"
+                ],
+                "psr-4": {
+                    "Adbar\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Riku Särkinen",
+                    "email": "riku@adbar.io"
+                }
+            ],
+            "description": "PHP dot notation access to arrays",
+            "homepage": "https://github.com/adbario/php-dot-notation",
+            "keywords": [
+                "ArrayAccess",
+                "dotnotation"
+            ],
+            "support": {
+                "issues": "https://github.com/adbario/php-dot-notation/issues",
+                "source": "https://github.com/adbario/php-dot-notation/tree/2.5.0"
+            },
+            "time": "2022-10-14T20:31:46+00:00"
+        },
+        {
+            "name": "alibabacloud/credentials",
+            "version": "1.1.5",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/aliyun/credentials-php.git",
+                "reference": "1d8383ceef695974a88a3859c42e235fd2e3981a"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/aliyun/credentials-php/zipball/1d8383ceef695974a88a3859c42e235fd2e3981a",
+                "reference": "1d8383ceef695974a88a3859c42e235fd2e3981a",
+                "shasum": ""
+            },
+            "require": {
+                "adbario/php-dot-notation": "^2.2",
+                "alibabacloud/tea": "^3.0",
+                "ext-curl": "*",
+                "ext-json": "*",
+                "ext-libxml": "*",
+                "ext-mbstring": "*",
+                "ext-openssl": "*",
+                "ext-simplexml": "*",
+                "ext-xmlwriter": "*",
+                "guzzlehttp/guzzle": "^6.3|^7.0",
+                "php": ">=5.6"
+            },
+            "require-dev": {
+                "composer/composer": "^1.8",
+                "drupal/coder": "^8.3",
+                "ext-dom": "*",
+                "ext-pcre": "*",
+                "ext-sockets": "*",
+                "ext-spl": "*",
+                "mikey179/vfsstream": "^1.6",
+                "monolog/monolog": "^1.24",
+                "phpunit/phpunit": "^5.7|^6.6|^7.5",
+                "psr/cache": "^1.0",
+                "symfony/dotenv": "^3.4",
+                "symfony/var-dumper": "^3.4"
+            },
+            "suggest": {
+                "ext-sockets": "To use client-side monitoring"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "AlibabaCloud\\Credentials\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "Apache-2.0"
+            ],
+            "authors": [
+                {
+                    "name": "Alibaba Cloud SDK",
+                    "email": "sdk-team@alibabacloud.com",
+                    "homepage": "http://www.alibabacloud.com"
+                }
+            ],
+            "description": "Alibaba Cloud Credentials for PHP",
+            "homepage": "https://www.alibabacloud.com/",
+            "keywords": [
+                "alibaba",
+                "alibabacloud",
+                "aliyun",
+                "client",
+                "cloud",
+                "credentials",
+                "library",
+                "sdk",
+                "tool"
+            ],
+            "support": {
+                "issues": "https://github.com/aliyun/credentials-php/issues",
+                "source": "https://github.com/aliyun/credentials-php"
+            },
+            "time": "2023-04-11T02:12:12+00:00"
+        },
+        {
+            "name": "alibabacloud/tea",
+            "version": "3.2.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/aliyun/tea-php.git",
+                "reference": "1619cb96c158384f72b873e1f85de8b299c9c367"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/aliyun/tea-php/zipball/1619cb96c158384f72b873e1f85de8b299c9c367",
+                "reference": "1619cb96c158384f72b873e1f85de8b299c9c367",
+                "shasum": ""
+            },
+            "require": {
+                "adbario/php-dot-notation": "^2.4",
+                "ext-curl": "*",
+                "ext-json": "*",
+                "ext-libxml": "*",
+                "ext-mbstring": "*",
+                "ext-openssl": "*",
+                "ext-simplexml": "*",
+                "ext-xmlwriter": "*",
+                "guzzlehttp/guzzle": "^6.3|^7.0",
+                "php": ">=5.5"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "*",
+                "symfony/dotenv": "^3.4",
+                "symfony/var-dumper": "^3.4"
+            },
+            "suggest": {
+                "ext-sockets": "To use client-side monitoring"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "AlibabaCloud\\Tea\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "Apache-2.0"
+            ],
+            "authors": [
+                {
+                    "name": "Alibaba Cloud SDK",
+                    "email": "sdk-team@alibabacloud.com",
+                    "homepage": "http://www.alibabacloud.com"
+                }
+            ],
+            "description": "Client of Tea for PHP",
+            "homepage": "https://www.alibabacloud.com/",
+            "keywords": [
+                "alibabacloud",
+                "client",
+                "cloud",
+                "tea"
+            ],
+            "support": {
+                "issues": "https://github.com/aliyun/tea-php/issues",
+                "source": "https://github.com/aliyun/tea-php"
+            },
+            "time": "2023-05-16T06:43:41+00:00"
+        },
+        {
+            "name": "guzzlehttp/guzzle",
+            "version": "7.8.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/guzzle/guzzle.git",
+                "reference": "41042bc7ab002487b876a0683fc8dce04ddce104"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/guzzle/guzzle/zipball/41042bc7ab002487b876a0683fc8dce04ddce104",
+                "reference": "41042bc7ab002487b876a0683fc8dce04ddce104",
+                "shasum": ""
+            },
+            "require": {
+                "ext-json": "*",
+                "guzzlehttp/promises": "^1.5.3 || ^2.0.1",
+                "guzzlehttp/psr7": "^1.9.1 || ^2.5.1",
+                "php": "^7.2.5 || ^8.0",
+                "psr/http-client": "^1.0",
+                "symfony/deprecation-contracts": "^2.2 || ^3.0"
+            },
+            "provide": {
+                "psr/http-client-implementation": "1.0"
+            },
+            "require-dev": {
+                "bamarni/composer-bin-plugin": "^1.8.2",
+                "ext-curl": "*",
+                "php-http/client-integration-tests": "dev-master#2c025848417c1135031fdf9c728ee53d0a7ceaee as 3.0.999",
+                "php-http/message-factory": "^1.1",
+                "phpunit/phpunit": "^8.5.36 || ^9.6.15",
+                "psr/log": "^1.1 || ^2.0 || ^3.0"
+            },
+            "suggest": {
+                "ext-curl": "Required for CURL handler support",
+                "ext-intl": "Required for Internationalized Domain Name (IDN) support",
+                "psr/log": "Required for using the Log middleware"
+            },
+            "type": "library",
+            "extra": {
+                "bamarni-bin": {
+                    "bin-links": true,
+                    "forward-command": false
+                }
+            },
+            "autoload": {
+                "files": [
+                    "src/functions_include.php"
+                ],
+                "psr-4": {
+                    "GuzzleHttp\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Graham Campbell",
+                    "email": "hello@gjcampbell.co.uk",
+                    "homepage": "https://github.com/GrahamCampbell"
+                },
+                {
+                    "name": "Michael Dowling",
+                    "email": "mtdowling@gmail.com",
+                    "homepage": "https://github.com/mtdowling"
+                },
+                {
+                    "name": "Jeremy Lindblom",
+                    "email": "jeremeamia@gmail.com",
+                    "homepage": "https://github.com/jeremeamia"
+                },
+                {
+                    "name": "George Mponos",
+                    "email": "gmponos@gmail.com",
+                    "homepage": "https://github.com/gmponos"
+                },
+                {
+                    "name": "Tobias Nyholm",
+                    "email": "tobias.nyholm@gmail.com",
+                    "homepage": "https://github.com/Nyholm"
+                },
+                {
+                    "name": "Márk Sági-Kazár",
+                    "email": "mark.sagikazar@gmail.com",
+                    "homepage": "https://github.com/sagikazarmark"
+                },
+                {
+                    "name": "Tobias Schultze",
+                    "email": "webmaster@tubo-world.de",
+                    "homepage": "https://github.com/Tobion"
+                }
+            ],
+            "description": "Guzzle is a PHP HTTP client library",
+            "keywords": [
+                "client",
+                "curl",
+                "framework",
+                "http",
+                "http client",
+                "psr-18",
+                "psr-7",
+                "rest",
+                "web service"
+            ],
+            "support": {
+                "issues": "https://github.com/guzzle/guzzle/issues",
+                "source": "https://github.com/guzzle/guzzle/tree/7.8.1"
+            },
+            "funding": [
+                {
+                    "url": "https://github.com/GrahamCampbell",
+                    "type": "github"
+                },
+                {
+                    "url": "https://github.com/Nyholm",
+                    "type": "github"
+                },
+                {
+                    "url": "https://tidelift.com/funding/github/packagist/guzzlehttp/guzzle",
+                    "type": "tidelift"
+                }
+            ],
+            "time": "2023-12-03T20:35:24+00:00"
+        },
+        {
+            "name": "guzzlehttp/promises",
+            "version": "2.0.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/guzzle/promises.git",
+                "reference": "bbff78d96034045e58e13dedd6ad91b5d1253223"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/guzzle/promises/zipball/bbff78d96034045e58e13dedd6ad91b5d1253223",
+                "reference": "bbff78d96034045e58e13dedd6ad91b5d1253223",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^7.2.5 || ^8.0"
+            },
+            "require-dev": {
+                "bamarni/composer-bin-plugin": "^1.8.2",
+                "phpunit/phpunit": "^8.5.36 || ^9.6.15"
+            },
+            "type": "library",
+            "extra": {
+                "bamarni-bin": {
+                    "bin-links": true,
+                    "forward-command": false
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "GuzzleHttp\\Promise\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Graham Campbell",
+                    "email": "hello@gjcampbell.co.uk",
+                    "homepage": "https://github.com/GrahamCampbell"
+                },
+                {
+                    "name": "Michael Dowling",
+                    "email": "mtdowling@gmail.com",
+                    "homepage": "https://github.com/mtdowling"
+                },
+                {
+                    "name": "Tobias Nyholm",
+                    "email": "tobias.nyholm@gmail.com",
+                    "homepage": "https://github.com/Nyholm"
+                },
+                {
+                    "name": "Tobias Schultze",
+                    "email": "webmaster@tubo-world.de",
+                    "homepage": "https://github.com/Tobion"
+                }
+            ],
+            "description": "Guzzle promises library",
+            "keywords": [
+                "promise"
+            ],
+            "support": {
+                "issues": "https://github.com/guzzle/promises/issues",
+                "source": "https://github.com/guzzle/promises/tree/2.0.2"
+            },
+            "funding": [
+                {
+                    "url": "https://github.com/GrahamCampbell",
+                    "type": "github"
+                },
+                {
+                    "url": "https://github.com/Nyholm",
+                    "type": "github"
+                },
+                {
+                    "url": "https://tidelift.com/funding/github/packagist/guzzlehttp/promises",
+                    "type": "tidelift"
+                }
+            ],
+            "time": "2023-12-03T20:19:20+00:00"
+        },
+        {
+            "name": "guzzlehttp/psr7",
+            "version": "2.6.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/guzzle/psr7.git",
+                "reference": "45b30f99ac27b5ca93cb4831afe16285f57b8221"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/guzzle/psr7/zipball/45b30f99ac27b5ca93cb4831afe16285f57b8221",
+                "reference": "45b30f99ac27b5ca93cb4831afe16285f57b8221",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^7.2.5 || ^8.0",
+                "psr/http-factory": "^1.0",
+                "psr/http-message": "^1.1 || ^2.0",
+                "ralouphie/getallheaders": "^3.0"
+            },
+            "provide": {
+                "psr/http-factory-implementation": "1.0",
+                "psr/http-message-implementation": "1.0"
+            },
+            "require-dev": {
+                "bamarni/composer-bin-plugin": "^1.8.2",
+                "http-interop/http-factory-tests": "^0.9",
+                "phpunit/phpunit": "^8.5.36 || ^9.6.15"
+            },
+            "suggest": {
+                "laminas/laminas-httphandlerrunner": "Emit PSR-7 responses"
+            },
+            "type": "library",
+            "extra": {
+                "bamarni-bin": {
+                    "bin-links": true,
+                    "forward-command": false
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "GuzzleHttp\\Psr7\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Graham Campbell",
+                    "email": "hello@gjcampbell.co.uk",
+                    "homepage": "https://github.com/GrahamCampbell"
+                },
+                {
+                    "name": "Michael Dowling",
+                    "email": "mtdowling@gmail.com",
+                    "homepage": "https://github.com/mtdowling"
+                },
+                {
+                    "name": "George Mponos",
+                    "email": "gmponos@gmail.com",
+                    "homepage": "https://github.com/gmponos"
+                },
+                {
+                    "name": "Tobias Nyholm",
+                    "email": "tobias.nyholm@gmail.com",
+                    "homepage": "https://github.com/Nyholm"
+                },
+                {
+                    "name": "Márk Sági-Kazár",
+                    "email": "mark.sagikazar@gmail.com",
+                    "homepage": "https://github.com/sagikazarmark"
+                },
+                {
+                    "name": "Tobias Schultze",
+                    "email": "webmaster@tubo-world.de",
+                    "homepage": "https://github.com/Tobion"
+                },
+                {
+                    "name": "Márk Sági-Kazár",
+                    "email": "mark.sagikazar@gmail.com",
+                    "homepage": "https://sagikazarmark.hu"
+                }
+            ],
+            "description": "PSR-7 message implementation that also provides common utility methods",
+            "keywords": [
+                "http",
+                "message",
+                "psr-7",
+                "request",
+                "response",
+                "stream",
+                "uri",
+                "url"
+            ],
+            "support": {
+                "issues": "https://github.com/guzzle/psr7/issues",
+                "source": "https://github.com/guzzle/psr7/tree/2.6.2"
+            },
+            "funding": [
+                {
+                    "url": "https://github.com/GrahamCampbell",
+                    "type": "github"
+                },
+                {
+                    "url": "https://github.com/Nyholm",
+                    "type": "github"
+                },
+                {
+                    "url": "https://tidelift.com/funding/github/packagist/guzzlehttp/psr7",
+                    "type": "tidelift"
+                }
+            ],
+            "time": "2023-12-03T20:05:35+00:00"
+        },
+        {
+            "name": "psr/http-client",
+            "version": "1.0.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/php-fig/http-client.git",
+                "reference": "bb5906edc1c324c9a05aa0873d40117941e5fa90"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/php-fig/http-client/zipball/bb5906edc1c324c9a05aa0873d40117941e5fa90",
+                "reference": "bb5906edc1c324c9a05aa0873d40117941e5fa90",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^7.0 || ^8.0",
+                "psr/http-message": "^1.0 || ^2.0"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.0.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Psr\\Http\\Client\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "PHP-FIG",
+                    "homepage": "https://www.php-fig.org/"
+                }
+            ],
+            "description": "Common interface for HTTP clients",
+            "homepage": "https://github.com/php-fig/http-client",
+            "keywords": [
+                "http",
+                "http-client",
+                "psr",
+                "psr-18"
+            ],
+            "support": {
+                "source": "https://github.com/php-fig/http-client"
+            },
+            "time": "2023-09-23T14:17:50+00:00"
+        },
+        {
+            "name": "psr/http-factory",
+            "version": "1.0.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/php-fig/http-factory.git",
+                "reference": "e616d01114759c4c489f93b099585439f795fe35"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/php-fig/http-factory/zipball/e616d01114759c4c489f93b099585439f795fe35",
+                "reference": "e616d01114759c4c489f93b099585439f795fe35",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=7.0.0",
+                "psr/http-message": "^1.0 || ^2.0"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.0.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Psr\\Http\\Message\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "PHP-FIG",
+                    "homepage": "https://www.php-fig.org/"
+                }
+            ],
+            "description": "Common interfaces for PSR-7 HTTP message factories",
+            "keywords": [
+                "factory",
+                "http",
+                "message",
+                "psr",
+                "psr-17",
+                "psr-7",
+                "request",
+                "response"
+            ],
+            "support": {
+                "source": "https://github.com/php-fig/http-factory/tree/1.0.2"
+            },
+            "time": "2023-04-10T20:10:41+00:00"
+        },
+        {
+            "name": "psr/http-message",
+            "version": "2.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/php-fig/http-message.git",
+                "reference": "402d35bcb92c70c026d1a6a9883f06b2ead23d71"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/php-fig/http-message/zipball/402d35bcb92c70c026d1a6a9883f06b2ead23d71",
+                "reference": "402d35bcb92c70c026d1a6a9883f06b2ead23d71",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^7.2 || ^8.0"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "2.0.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Psr\\Http\\Message\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "PHP-FIG",
+                    "homepage": "https://www.php-fig.org/"
+                }
+            ],
+            "description": "Common interface for HTTP messages",
+            "homepage": "https://github.com/php-fig/http-message",
+            "keywords": [
+                "http",
+                "http-message",
+                "psr",
+                "psr-7",
+                "request",
+                "response"
+            ],
+            "support": {
+                "source": "https://github.com/php-fig/http-message/tree/2.0"
+            },
+            "time": "2023-04-04T09:54:51+00:00"
+        },
+        {
+            "name": "ralouphie/getallheaders",
+            "version": "3.0.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/ralouphie/getallheaders.git",
+                "reference": "120b605dfeb996808c31b6477290a714d356e822"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/ralouphie/getallheaders/zipball/120b605dfeb996808c31b6477290a714d356e822",
+                "reference": "120b605dfeb996808c31b6477290a714d356e822",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.6"
+            },
+            "require-dev": {
+                "php-coveralls/php-coveralls": "^2.1",
+                "phpunit/phpunit": "^5 || ^6.5"
+            },
+            "type": "library",
+            "autoload": {
+                "files": [
+                    "src/getallheaders.php"
                 ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Ralph Khattar",
+                    "email": "ralph.khattar@gmail.com"
+                }
+            ],
+            "description": "A polyfill for getallheaders.",
+            "support": {
+                "issues": "https://github.com/ralouphie/getallheaders/issues",
+                "source": "https://github.com/ralouphie/getallheaders/tree/develop"
+            },
+            "time": "2019-03-08T08:55:37+00:00"
+        },
+        {
+            "name": "symfony/deprecation-contracts",
+            "version": "v2.5.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/symfony/deprecation-contracts.git",
+                "reference": "e8b495ea28c1d97b5e0c121748d6f9b53d075c66"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/symfony/deprecation-contracts/zipball/e8b495ea28c1d97b5e0c121748d6f9b53d075c66",
+                "reference": "e8b495ea28c1d97b5e0c121748d6f9b53d075c66",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=7.1"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-main": "2.5-dev"
+                },
+                "thanks": {
+                    "name": "symfony/contracts",
+                    "url": "https://github.com/symfony/contracts"
+                }
+            },
+            "autoload": {
+                "files": [
+                    "function.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Nicolas Grekas",
+                    "email": "p@tchwork.com"
+                },
+                {
+                    "name": "Symfony Community",
+                    "homepage": "https://symfony.com/contributors"
+                }
+            ],
+            "description": "A generic function and convention to trigger deprecation notices",
+            "homepage": "https://symfony.com",
+            "support": {
+                "source": "https://github.com/symfony/deprecation-contracts/tree/v2.5.2"
+            },
+            "funding": [
+                {
+                    "url": "https://symfony.com/sponsor",
+                    "type": "custom"
+                },
+                {
+                    "url": "https://github.com/fabpot",
+                    "type": "github"
+                },
+                {
+                    "url": "https://tidelift.com/funding/github/packagist/symfony/symfony",
+                    "type": "tidelift"
+                }
+            ],
+            "time": "2022-01-02T09:53:40+00:00"
+        },
+        {
+            "name": "topthink/framework",
+            "version": "v5.0.25",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/top-think/framework.git",
+                "reference": "643c58ed1bd22a2823ce5e95b3b68a5075f9087c"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/top-think/framework/zipball/643c58ed1bd22a2823ce5e95b3b68a5075f9087c",
+                "reference": "643c58ed1bd22a2823ce5e95b3b68a5075f9087c",
+                "shasum": ""
             },
             "require": {
                 "php": ">=5.4.0",
@@ -61,33 +849,31 @@
                 "orm",
                 "thinkphp"
             ],
-            "time": "2018-09-04T09:18:48+00:00"
+            "support": {
+                "issues": "https://github.com/top-think/framework/issues",
+                "source": "https://github.com/top-think/framework/tree/v5.0.25"
+            },
+            "time": "2022-10-25T14:59:38+00:00"
         },
         {
             "name": "topthink/think-installer",
-            "version": "v1.0.12",
+            "version": "v1.0.14",
             "source": {
                 "type": "git",
                 "url": "https://github.com/top-think/think-installer.git",
-                "reference": "1be326e68f63de4e95977ed50f46ae75f017556d"
+                "reference": "eae1740ac264a55c06134b6685dfb9f837d004d1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/top-think/think-installer/zipball/1be326e68f63de4e95977ed50f46ae75f017556d",
-                "reference": "1be326e68f63de4e95977ed50f46ae75f017556d",
-                "shasum": "",
-                "mirrors": [
-                    {
-                        "url": "https://dl.laravel-china.org/%package%/%reference%.%type%",
-                        "preferred": true
-                    }
-                ]
+                "url": "https://api.github.com/repos/top-think/think-installer/zipball/eae1740ac264a55c06134b6685dfb9f837d004d1",
+                "reference": "eae1740ac264a55c06134b6685dfb9f837d004d1",
+                "shasum": ""
             },
             "require": {
-                "composer-plugin-api": "^1.0"
+                "composer-plugin-api": "^1.0||^2.0"
             },
             "require-dev": {
-                "composer/composer": "1.0.*@dev"
+                "composer/composer": "^1.0||^2.0"
             },
             "type": "composer-plugin",
             "extra": {
@@ -108,7 +894,11 @@
                     "email": "448901948@qq.com"
                 }
             ],
-            "time": "2017-05-27T06:58:09+00:00"
+            "support": {
+                "issues": "https://github.com/top-think/think-installer/issues",
+                "source": "https://github.com/top-think/think-installer/tree/v1.0.14"
+            },
+            "time": "2021-03-25T08:34:02+00:00"
         }
     ],
     "packages-dev": [],
@@ -118,7 +908,11 @@
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {
-        "php": ">=5.4.0"
+        "php": ">=7.0",
+        "ext-json": "*",
+        "ext-soap": "*",
+        "ext-curl": "*"
     },
-    "platform-dev": []
+    "platform-dev": [],
+    "plugin-api-version": "2.3.0"
 }
