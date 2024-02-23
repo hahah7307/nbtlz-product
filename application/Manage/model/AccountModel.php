@@ -3,6 +3,8 @@
 namespace app\Manage\model;
 
 use think\Config;
+use think\db\exception\DataNotFoundException;
+use think\db\exception\ModelNotFoundException;
 use think\exception\DbException;
 use think\Model;
 use think\Session;
@@ -85,5 +87,16 @@ class AccountModel extends Model
         } else {
             return [$account['id']];
         }
+    }
+
+    /**
+     * @throws ModelNotFoundException
+     * @throws DbException
+     * @throws DataNotFoundException
+     */
+    static public function account_seller()
+    {
+        $sellerObj = new AdminUserRoleModel();
+        return $sellerObj->with("user")->where(['role_id' => 5])->select();
     }
 }

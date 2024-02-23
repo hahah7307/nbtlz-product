@@ -4,17 +4,10 @@
 <!-- 主体内容 -->
 <div class="layui-body" id="LAY_app_body">
     <div class="right">
-        <div class="title">海外仓索赔登记列表</div>
+        <div class="title">Sku列表</div>
         <form class="layui-form search-form" method="get">
             <div class="layui-inline w200">
-                <input type="text" class="layui-input" name="keyword" value="{$keyword}" placeholder="跟踪号/订单号/SKU">
-            </div>
-            <div class="layui-inline w120">
-                <select name="state" lay-verify="">
-                    <option value="">索赔状态</option>
-                    <option value="0" {if condition="$state eq '0'"}selected{/if}>未完成</option>
-                    <option value="1" {if condition="$state eq '1'"}selected{/if}>已完成</option>
-                </select>
+                <input type="text" class="layui-input" name="keyword" value="{$keyword}" placeholder="SKU">
             </div>
             <div class="layui-inline">
                 <button class="layui-btn" lay-submit lay-filter="Search"><i class="layui-icon">&#xe615;</i> 查询</button>
@@ -28,36 +21,26 @@
             <a class="layui-btn" href="{:url('add')}">添加</a>
             <table class="layui-table" lay-size="sm">
                 <colgroup>
-                    <col width="50">
                     <col>
                     <col>
                     <col>
-                    <col>
-                    <col>
-                    <col>
-                    <col>
-                    <col>
-                    <col>
+                    <col width="200">
+                    <col width="200">
                     {if condition="$user.super eq 1 or $user.manage eq 1"}
-                    <col>
+                        <col width="100">
                     {/if}
-                    <col>
-                    <col width="150">
+                    <col width="80">
+                    <col width="100">
                 </colgroup>
                 <thead>
                 <tr>
-                    <th class="tc">ID</th>
-                    <th>跟踪号</th>
-                    <th>订单号</th>
-                    <th>仓库SKU</th>
-                    <th class="tc">索赔金额</th>
-                    <th class="tc">到账金额</th>
-                    <th class="tc">索赔类型</th>
-                    <th>所属仓库</th>
+                    <th>Sku</th>
+                    <th>中文名称</th>
+                    <th>图片目录名称</th>
                     <th class="tc">添加时间</th>
                     <th class="tc">修改时间</th>
                     {if condition="$user.super eq 1 or $user.manage eq 1"}
-                    <th>索赔人</th>
+                        <th class="tc">运营人员</th>
                     {/if}
                     <th class="tc">状态</th>
                     <th class="tc">操作</th>
@@ -66,41 +49,20 @@
                 <tbody>
                 {foreach name="list" item="v"}
                 <tr>
-                    <td class="tc">{$v.id}</td>
-                    <td>{$v.shipping_method_no}</td>
-                    <td>{$v.reference_no}</td>
                     <td>{$v.product_sku}</td>
-                    <td class="tr">{$v.claimant_amount}</td>
-                    <td class="tr">{$v.received_amount}</td>
-                    <td class="tc">
-                        {if condition="$v.claimant_type eq 1"}
-                            库内丢失
-                        {elseif condition="$v.claimant_type eq 2"/}
-                            妥投未签收
-                        {elseif condition="$v.claimant_type eq 3"/}
-                            暴力运输（产品破损）
-                        {elseif condition="$v.claimant_type eq 4"/}
-                            途中丢包
-                        {/if}
-                    </td>
-                    <td>{$v.warehouse.name}</td>
+                    <td>{$v.product_name_cn}</td>
+                    <td>{$v.sku_file_name}</td>
                     <td class="tc">{$v.created_at}</td>
                     <td class="tc">{$v.updated_at}</td>
                     {if condition="$user.super eq 1 or $user.manage eq 1"}
-                    <td>{$v.admin.nickname}</td>
+                        <td class="tc">{$v.user.nickname}</td>
                     {/if}
                     <td class="tc">
-                        {if condition="$v.state eq 1"}
-                        <span class="green">已完成</span>
-                        {else/}
-                        <span class="red">未完成</span>
-                        {/if}
+                        <input type="checkbox" class="h30" name="look" value="{$v.id}" lay-skin="switch" lay-text="是|否" lay-filter="formLock" {if condition="$v.state eq 1"}checked{/if}>
                     </td>
                     <td class="tc">
                         <a href="{:url('edit', ['id' => $v.id])}" class="layui-btn layui-btn-normal layui-btn-sm">编辑</a>
-                        {if condition="$user.super eq 1"}
-                            <button data-id="{$v.id}" class="layui-btn layui-btn-sm layui-btn-danger ml0" lay-submit lay-filter="Detele">删除</button>
-                        {/if}
+<!--                        <button data-id="{$v.id}" class="layui-btn layui-btn-sm layui-btn-danger ml0" lay-submit lay-filter="Delete">删除</button>-->
                     </td>
                 </tr>
                 {/foreach}
@@ -116,8 +78,26 @@
         let $ = layui.jquery,
             form = layui.form;
 
+        // 状态
+        form.on('switch(formLock)', function(data){
+            $('button').attr('disabled',true);
+            axios.post("{:url('status')}", {id:data.value,type:'look'})
+                .then(function (response) {
+                    let res = response.data;
+                    if (res.code === 0) {
+                        layer.alert(data.msg,{icon:2,closeBtn:0,title:false,btnAlign:'c'},function(){
+                            location.reload();
+                        });
+                    }
+                })
+                .catch(function (error) {
+                    console.log(error);
+                });
+            return false;
+        });
+
         // 删除
-        form.on('submit(Detele)', function(data){
+        form.on('submit(Delete)', function(data){
             let text = $(this).text(),
                 button = $(this),
                 id = $(this).data('id');
