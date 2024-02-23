@@ -5,6 +5,17 @@
 <div class="layui-body" id="LAY_app_body">
     <div class="right">
         <div class="title">运营人员目录</div>
+        <form class="layui-form search-form" method="get">
+            <div class="layui-inline w200">
+                <input type="text" class="layui-input" name="keyword" value="{$keyword}" placeholder="">
+            </div>
+            <div class="layui-inline">
+                <button class="layui-btn" lay-submit lay-filter="Search"><i class="layui-icon">&#xe615;</i> 查询</button>
+            </div>
+            <div class="layui-inline">
+                <a class="layui-btn layui-btn-normal" href="{:url('index')}"><i class="layui-icon">&#xe621;</i> 重置</a>
+            </div>
+        </form>
 
         <div class="layui-form">
             <table class="layui-table" lay-size="sm">
@@ -23,10 +34,10 @@
                 <tbody>
                 {foreach name="list" item="v"}
                 <tr>
-                    <td>{$v.user.username}</td>
-                    <td>{$v.user.nickname}</td>
+                    <td>{$v.username}</td>
+                    <td>{$v.nickname}</td>
                     <td class="tc">
-                        <a href="{:url('sku', ['id' => $v.user.id])}" class="layui-btn layui-btn-sm">打开</a>
+                        <a href="{:url('sku', ['id' => $v.id])}" class="layui-btn layui-btn-sm">打开</a>
                     </td>
                 </tr>
                 {/foreach}

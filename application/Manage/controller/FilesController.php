@@ -7,7 +7,6 @@ use app\Manage\model\FilesModel;
 use app\Manage\model\FilesTypeModel;
 use app\Manage\model\SellerSkuModel;
 use app\Manage\validate\FilesValidate;
-use app\Manage\validate\SellerSkuValidate;
 use think\db\exception\DataNotFoundException;
 use think\db\exception\ModelNotFoundException;
 use think\Exception;
@@ -24,9 +23,16 @@ class FilesController extends BaseController
      */
     public function seller(): \think\response\View
     {
-        $seller = AccountModel::account_seller();
-        $this->assign('list', $seller);
+        $where = ['nickname' => 'nobody'];
+        $keyword = $this->request->get('keyword', '', 'htmlspecialchars');
+        $this->assign('keyword', $keyword);
+        if ($keyword) {
+            $where['nickname'] = $keyword;
+        }
 
+        $account = new AccountModel();
+        $list = $account->where($where)->select();
+        $this->assign('list', $list);
 
         Session::set(Config::get('BACK_URL'), [], 'manage');
         return view();
@@ -38,11 +44,16 @@ class FilesController extends BaseController
      */
     public function sku($id): \think\response\View
     {
-        $where = [];
         $where['state'] = SellerSkuModel::STATE_ACTIVE;
         if ($id != 1) {
             $where['seller_id'] = $id;
         }
+        if (AccountModel::account_role() == 'Painter') {
+            $where['product_sku'] = 'no_sku';
+            $user = AccountModel::where(['id'=>Session::get(Config::get('USER_LOGIN_FLAG')), 'status' => AccountModel::STATUS_ACTIVE])->find();
+            $where['painter_id'] = $user['id'];
+        }
+        $this->assign('seller_id', $id);
 
         $keyword = $this->request->get('keyword', '', 'htmlspecialchars');
         $this->assign('keyword', $keyword);
@@ -51,7 +62,7 @@ class FilesController extends BaseController
         }
 
         $sellerSkuModel = new SellerSkuModel();
-        $list = $sellerSkuModel->with('user')->where($where)->order('id asc')->paginate(Config::get('PAGE_NUM'));
+        $list = $sellerSkuModel->with(['seller', 'painter'])->where($where)->order('id asc')->paginate(Config::get('PAGE_NUM'));
         $this->assign('list', $list);
 
         $back_url = Session::get(Config::get('BACK_URL'), 'manage');

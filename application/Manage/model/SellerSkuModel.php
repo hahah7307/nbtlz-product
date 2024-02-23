@@ -26,8 +26,13 @@ class SellerSkuModel extends Model
         return date('Y-m-d H:i:s');
     }
 
-    public function user(): \think\model\relation\HasOne
+    public function seller(): \think\model\relation\HasOne
     {
         return $this->hasOne('AccountModel', 'id', 'seller_id');
+    }
+
+    public function painter(): \think\model\relation\HasOne
+    {
+        return $this->hasOne('AccountModel', 'id', 'painter_id');
     }
 }

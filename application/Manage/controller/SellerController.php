@@ -45,11 +45,16 @@ class SellerController extends BaseController
         if ($this->request->isPost()) {
             $post = $this->request->post();
             $user = AccountModel::get(['id'=>Session::get(Config::get('USER_LOGIN_FLAG')), 'status' => AccountModel::STATUS_ACTIVE]);
-            $post['seller_id'] = $user['id'];
+            $post['painter_id'] = $user['id'];
             $post['state'] = SellerSkuModel::STATE_ACTIVE;
             $dataValidate = new SellerSkuValidate();
             if ($dataValidate->scene('add')->check($post)) {
                 $model = new SellerSkuModel();
+                $sku = $model->where(['seller_id' => $post['seller_id'], 'painter_id' => $user['id'], 'product_sku' => $post['product_sku']])->find();
+                if (!empty($sku)) {
+                    echo json_encode(['code' => 0, 'msg' => '您已创建过该Sku']);
+                    exit;
+                }
                 if ($model->allowField(true)->save($post)) {
                     echo json_encode(['code' => 1, 'msg' => '添加成功']);
                 } else {
@@ -60,7 +65,16 @@ class SellerController extends BaseController
             }
             exit;
         } else {
+            $this->assign('seller_id', input('id'));
 
+            $back_url = Session::get(Config::get('BACK_URL'), 'manage');
+            if (in_array($this->request->url(), $back_url)) {
+                array_pop($back_url);
+            } else {
+                $back_url[] = $this->request->url();
+            }
+            $this->assign('back_url', array_reverse($back_url)[1]);
+            Session::set(Config::get('BACK_URL'), $back_url, 'manage');
             return view();
         }
     }

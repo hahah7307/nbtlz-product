@@ -27,7 +27,7 @@
                         {/if}
                     </dl>
                 </li>
-                {if condition="$role eq 'Super' or $role eq 'Seller'"}
+                {if condition="$user.super eq 1"}
                 <li data-name="Storage" class="layui-nav-item">
                     <a layui-href="javascript:;" lay-tips="仓库" lay-direction="2">
                         <i class="layui-icon iconfont icon-jichugongneng"></i>
@@ -37,8 +37,6 @@
                         <dd><a layui-href="{:url('Seller/sku')}">Sku</a></dd>
                     </dl>
                 </li>
-                {/if}
-                {if condition="$user.super eq 1"}
                 <li data-name="Site" class="layui-nav-item">
                     <a layui-href="javascript:;" lay-tips="设置" lay-direction="2">
                         <i class="layui-icon layui-icon-set"></i>

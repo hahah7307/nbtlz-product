@@ -21,12 +21,18 @@
         </form>
 
         <div class="layui-form">
+            {if condition="$role eq 'Super' or $role eq 'Painter'"}
+                <a class="layui-btn" href="{:url('Seller/add', ['id' => $seller_id])}">创建</a>
+            {/if}
             <table class="layui-table" lay-size="sm">
                 <colgroup>
                     <col>
                     <col>
                     <col>
-                    {if condition="$role eq 'Super'"}
+                    {if condition="$role eq 'Super' or $role eq 'Seller'"}
+                        <col>
+                    {/if}
+                    {if condition="$role eq 'Super' or $role eq 'Painter'"}
                         <col width="100">
                     {/if}
                     <col width="100">
@@ -36,7 +42,10 @@
                     <th>目录名称</th>
                     <th>Sku</th>
                     <th>中文名称</th>
-                    {if condition="$role eq 'Super'"}
+                    {if condition="$role eq 'Super' or $role eq 'Seller'"}
+                        <th>美工人员</th>
+                    {/if}
+                    {if condition="$role eq 'Super' or $role eq 'Painter'"}
                         <th>运营人员</th>
                     {/if}
                     <th class="tc">操作</th>
@@ -48,8 +57,11 @@
                     <td>{$v.sku_file_name}</td>
                     <td>{$v.product_sku}</td>
                     <td>{$v.product_name_cn}</td>
-                    {if condition="$role eq 'Super'"}
-                        <td>{$v.user.nickname}</td>
+                    {if condition="$role eq 'Super' or $role eq 'Seller'"}
+                        <td>{$v.painter.nickname}</td>
+                    {/if}
+                    {if condition="$role eq 'Super' or $role eq 'Painter'"}
+                        <td>{$v.seller.nickname}</td>
                     {/if}
                     <td class="tc">
                         <a href="{:url('type', ['id' => $v.id])}" class="layui-btn layui-btn-sm">打开</a>

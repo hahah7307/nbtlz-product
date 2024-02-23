@@ -4,7 +4,7 @@
 <!-- 主体内容 -->
 <div class="layui-body" id="LAY_app_body">
     <div class="right">
-        <a href="{:url('sku')}" class="layui-btn layui-btn-danger layui-btn-sm fr"><i class="layui-icon">&#xe603;</i>返回上一页</a>
+        <a href="{$back_url}" class="layui-btn layui-btn-danger layui-btn-sm fr"><i class="layui-icon">&#xe603;</i>返回上一页</a>
         <div class="title">添加Sku信息</div>
         <div class="layui-form">
             <div class="layui-form-item">
@@ -25,6 +25,7 @@
                     <input type="text" class="layui-input" name="sku_file_name">
                 </div>
             </div>
+            <input type="hidden" name="seller_id" value="{$seller_id}">
             <div class="layui-form-item">
                 <div class="layui-input-block">
                     <button class="layui-btn w200" lay-submit lay-filter="formCoding">提交保存</button>
