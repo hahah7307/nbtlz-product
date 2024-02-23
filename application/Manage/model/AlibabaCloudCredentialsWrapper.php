@@ -8,6 +8,7 @@ use OSS\Credentials\CredentialsProvider;
 use OSS\Credentials\StaticCredentialsProvider;
 use OSS\Http\RequestCore_Exception;
 use OSS\OssClient;
+use think\Config;
 use think\Model;
 
 class AlibabaCloudCredentialsWrapper extends Model implements CredentialsProvider
@@ -33,10 +34,13 @@ class AlibabaCloudCredentialsWrapper extends Model implements CredentialsProvide
 
     static public function uploadFile($url, $targetPath): array
     {
-        $accessKeyId = 'LTAI5tM41X7if1VTHvrHnSov';
-        $accessKeySecret = 'CGPU3yAaLh8L7kZHWhWtxF0I7QE2Zg';
-        $endpoint = 'https://oss-cn-hangzhou.aliyuncs.com';
-        $bucket = "tlz-product";
+        // 加载配置文件
+        Config::load(APP_PATH . 'web.php');
+
+        $accessKeyId = Config::get('OSS_ACCESS_KEY_ID');
+        $accessKeySecret = Config::get('OSS_ACCESS_KEY_SECRET');
+        $endpoint = Config::get('OSS_ENDPOINT');
+        $bucket = Config::get('OSS_BUCKET');
         $options = array(
             OssClient::OSS_CONTENT_TYPE => 'image/jpg',
         );
@@ -58,10 +62,13 @@ class AlibabaCloudCredentialsWrapper extends Model implements CredentialsProvide
 
     static public function signUrl($url): array
     {
-        $accessKeyId = 'LTAI5tM41X7if1VTHvrHnSov';
-        $accessKeySecret = 'CGPU3yAaLh8L7kZHWhWtxF0I7QE2Zg';
-        $endpoint = 'https://oss-cn-hangzhou.aliyuncs.com';
-        $bucket = "tlz-product";
+        // 加载配置文件
+        Config::load(APP_PATH . 'web.php');
+
+        $accessKeyId = Config::get('OSS_ACCESS_KEY_ID');
+        $accessKeySecret = Config::get('OSS_ACCESS_KEY_SECRET');
+        $endpoint = Config::get('OSS_ENDPOINT');
+        $bucket = Config::get('OSS_BUCKET');
         try {
             $ossClient = new OssClient($accessKeyId, $accessKeySecret, $endpoint);
             $timeout = 3600;

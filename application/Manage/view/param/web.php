@@ -4,62 +4,40 @@
 <!-- 主体内容 -->
 <div class="layui-body" id="LAY_app_body">
     <div class="right">
-        <div class="title">参数设置</div>
+        <div class="title">基础设置</div>
 		<div class="layui-form">
 			<div class="layui-form-item">
-				<label class="layui-form-label">相关产品数</label>
+				<label class="layui-form-label w120"></label>
 				<div class="layui-input-inline w300">
 					<input type="text" class="layui-input" name="aboutProduct" value="{$info.aboutProduct}" placeholder="请填写相关产品数">
 				</div>
 			</div>
-			<div class="layui-form-item">
-				<label class="layui-form-label">推荐产品数</label>
-				<div class="layui-input-inline w300">
-					<input type="text" class="layui-input" name="hotProduct" value="{$info.hotProduct}" placeholder="请填写推荐产品数">
-				</div>
-			</div>
-			<div class="layui-form-item">
-				<label class="layui-form-label">首页产品数</label>
-				<div class="layui-input-inline w300">
-					<input type="text" class="layui-input" name="indexProduct" value="{$info.indexProduct}" placeholder="请填写产品列表数">
-				</div>
-			</div>
-			<div class="layui-form-item">
-				<label class="layui-form-label">最新产品数</label>
-				<div class="layui-input-inline w300">
-					<input type="text" class="layui-input" name="lastProduct" value="{$info.lastProduct}" placeholder="请填写最新产品数">
-				</div>
-			</div>
-			<div class="layui-form-item">
-				<label class="layui-form-label">产品列表数</label>
-				<div class="layui-input-inline w300">
-					<input type="text" class="layui-input" name="listProduct" value="{$info.listProduct}" placeholder="请填写产品列表数">
-				</div>
-			</div>
-			<div class="layui-form-item">
-				<label class="layui-form-label">文章列表数</label>
-				<div class="layui-input-inline w300">
-					<input type="text" class="layui-input" name="listNews" value="{$info.listNews}" placeholder="请填写文章列表数">
-				</div>
-			</div>
-			<div class="layui-form-item">
-				<label class="layui-form-label">最新文章数</label>
-				<div class="layui-input-inline w300">
-					<input type="text" class="layui-input" name="lastArticle" value="{$info.lastArticle}" placeholder="请填写最新文章数">
-				</div>
-			</div>
-			<div class="layui-form-item">
-				<label class="layui-form-label">最近单页数</label>
-				<div class="layui-input-inline w300">
-					<input type="text" class="layui-input" name="lastPage" value="{$info.lastPage}" placeholder="请填写最近单页数">
-				</div>
-			</div>
-			<div class="layui-form-item">
-				<label class="layui-form-label">下载列表数</label>
-				<div class="layui-input-inline w300">
-					<input type="text" class="layui-input" name="listDown" value="{$info.listDown}" placeholder="请填写下载列表数">
-				</div>
-			</div>
+            <br>
+            <div class="title">阿里云OSS设置</div>
+            <div class="layui-form-item">
+                <label class="layui-form-label w120">Access Key Id</label>
+                <div class="layui-input-inline w300">
+                    <input type="text" class="layui-input" name="OSS_ACCESS_KEY_ID" value="{$info.OSS_ACCESS_KEY_ID}">
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label w120">Access Key Secret</label>
+                <div class="layui-input-inline w300">
+                    <input type="text" class="layui-input" name="OSS_ACCESS_KEY_SECRET" value="{$info.OSS_ACCESS_KEY_SECRET}">
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label w120">endpoint</label>
+                <div class="layui-input-inline w300">
+                    <input type="text" class="layui-input" name="OSS_ENDPOINT" value="{$info.OSS_ENDPOINT}">
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label w120">bucket</label>
+                <div class="layui-input-inline w300">
+                    <input type="text" class="layui-input" name="OSS_BUCKET" value="{$info.OSS_BUCKET}">
+                </div>
+            </div>
 			<div class="layui-form-item">
 				<div class="layui-input-block">
 					<button class="layui-btn w200" lay-submit lay-filter="formCoding">提交保存</button>

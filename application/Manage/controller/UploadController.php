@@ -8,12 +8,8 @@ use app\Manage\model\FilesModel;
 use app\Manage\model\FilesTypeModel;
 use app\Manage\model\SellerSkuModel;
 use app\Manage\validate\FilesValidate;
-use app\Manage\validate\SellerSkuValidate;
 use think\Config;
 use think\Controller;
-use app\Manage\model\ImageModel;
-use app\Manage\model\DownloadModel;
-use app\Manage\model\WebsiteLanguage;
 use think\db\exception\DataNotFoundException;
 use think\db\exception\ModelNotFoundException;
 use think\exception\DbException;
@@ -21,36 +17,6 @@ use think\Session;
 
 class UploadController extends Controller
 {
-    public function upload()
-    {
-        header('Content-type: image/png');
-        try {
-            $filename = date('Ymdhis') . '_' . mt_rand(1000,9999);
-            $fullname = $filename . '.jpg';
-            $info = $_POST['info'];
-
-            $file = fopen("upload/tinyMCE/images/". $fullname, "x");//打开文件准备写入
-            fwrite($file, base64_decode($info));//写入
-            fclose($file);//关闭
-
-            $model = new ImageModel();
-            $language = WebsiteLanguage::get(['status' => WebsiteLanguage::STATUS_ACTIVE, 'is_default' => WebsiteLanguage::DEFAULT_ACTIVE, 'is_avail' => WebsiteLanguage::AVIAIL_ACTIVE])->toArray();
-            $data['Image'] = [
-                'language_id'   =>  $language['id'],
-                'cid'           =>  1,
-                'title'         =>  $filename,
-                'url'           =>  '/tinyMCE/images/' . $fullname,
-                'status'        =>  1,
-            ];
-            $model->save($data['Image']);
-            echo json_encode(['code' => 1, 'info' => "/upload/tinyMCE/images/". $fullname]);
-            exit;
-        } catch (Exception $e) {
-            echo json_encode(['code' => 0, 'info' => $e->getMessage()]);
-            exit;
-        }
-    }
-
     /**
      * @throws DbException
      * @throws ModelNotFoundException
@@ -125,6 +91,9 @@ class UploadController extends Controller
                 ];
                 $dataValidate = new FilesValidate();
                 if ($dataValidate->scene('add')->check($filesData)) {
+                    if (is_file('upload/product/' . $new_filename)) {
+                        unlink('upload/product/' . $new_filename);
+                    }
                     $model = new FilesModel();
                     if ($model->allowField(true)->save($filesData)) {
                         echo json_encode(['code' => 1, 'msg' => '上传成功']);
