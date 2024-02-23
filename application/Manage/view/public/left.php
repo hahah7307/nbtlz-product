@@ -19,11 +19,15 @@
                         <cite>文件管理</cite>
                     </a>
                     <dl class="layui-nav-child">
-                        <dd><a layui-href="{:url('Files/seller')}">上传</a></dd>
-                        <dd><a layui-href="{:url('Files/sku')}">下载</a></dd>
+                        {if condition="$role eq 'Super' or $role eq 'Painter'"}
+                            <dd><a layui-href="{:url('Files/seller')}">上传</a></dd>
+                        {/if}
+                        {if condition="$role eq 'Super' or $role eq 'Seller'"}
+                            <dd><a layui-href="{:url('Files/sku', ['id' => $user['id']])}">下载</a></dd>
+                        {/if}
                     </dl>
                 </li>
-                {if condition="$user.super eq 1"}
+                {if condition="$role eq 'Super' or $role eq 'Seller'"}
                 <li data-name="Storage" class="layui-nav-item">
                     <a layui-href="javascript:;" lay-tips="仓库" lay-direction="2">
                         <i class="layui-icon iconfont icon-jichugongneng"></i>
@@ -33,6 +37,8 @@
                         <dd><a layui-href="{:url('Seller/sku')}">Sku</a></dd>
                     </dl>
                 </li>
+                {/if}
+                {if condition="$user.super eq 1"}
                 <li data-name="Site" class="layui-nav-item">
                     <a layui-href="javascript:;" lay-tips="设置" lay-direction="2">
                         <i class="layui-icon layui-icon-set"></i>

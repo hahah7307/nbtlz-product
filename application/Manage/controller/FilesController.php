@@ -10,6 +10,7 @@ use app\Manage\validate\FilesValidate;
 use app\Manage\validate\SellerSkuValidate;
 use think\db\exception\DataNotFoundException;
 use think\db\exception\ModelNotFoundException;
+use think\Exception;
 use think\exception\DbException;
 use think\Session;
 use think\Config;
@@ -33,12 +34,15 @@ class FilesController extends BaseController
 
     /**
      * @throws DbException
+     * @throws Exception
      */
     public function sku($id): \think\response\View
     {
         $where = [];
         $where['state'] = SellerSkuModel::STATE_ACTIVE;
-        $where['seller_id'] = $id;
+        if ($id != 1) {
+            $where['seller_id'] = $id;
+        }
 
         $keyword = $this->request->get('keyword', '', 'htmlspecialchars');
         $this->assign('keyword', $keyword);
@@ -47,10 +51,13 @@ class FilesController extends BaseController
         }
 
         $sellerSkuModel = new SellerSkuModel();
-        $list = $sellerSkuModel->where($where)->order('id asc')->paginate(Config::get('PAGE_NUM'));
+        $list = $sellerSkuModel->with('user')->where($where)->order('id asc')->paginate(Config::get('PAGE_NUM'));
         $this->assign('list', $list);
 
         $back_url = Session::get(Config::get('BACK_URL'), 'manage');
+        if (AccountModel::account_role() == 'Seller') {
+            $back_url = [];
+        }
         if (in_array($this->request->url(), $back_url)) {
             array_pop($back_url);
         } else {
@@ -100,6 +107,12 @@ class FilesController extends BaseController
         $skuObj = new SellerSkuModel();
         $sellerSku = $skuObj->where(['id' => $sku])->find();
         $where['seller_id'] = $sellerSku['seller_id'];
+
+        $keyword = $this->request->get('keyword', '', 'htmlspecialchars');
+        $this->assign('keyword', $keyword);
+        if ($keyword) {
+            $where['file_path|file_name'] = ['like', '%' . $keyword . '%'];
+        }
 
         $filesObj = new FilesModel();
         $list = $filesObj->with(['sku', 'type', 'seller', 'painter', 'server'])->where($where)->order('id asc')->paginate(Config::get('PAGE_NUM'));
