@@ -31,17 +31,17 @@
                     <col>
                     <col>
                     <col width="180">
-                    <col width="100">
+                    <col width="60">
                     <col width="100">
                     <col width="100">
                 </colgroup>
                 <thead>
                 <tr>
                     <th>文件名称</th>
-                    <th>文件目录</th>
                     <th>临时文件下载路径</th>
+                    <th>预览图</th>
                     <th>过期时间</th>
-                    <th>文件状态</th>
+                    <th>状态</th>
                     <th>美工人员</th>
                     <th class="tc">操作</th>
                 </tr>
@@ -50,8 +50,8 @@
                 {foreach name="list" item="v"}
                 <tr>
                     <td>{$v.file_name}</td>
-                    <td>{$v.file_path}</td>
                     <td><a href="{$v.file_tmp_url}">{$v.file_tmp_url}</a></td>
+                    <td><a href="{$v.file_tmp_url}"><img src="{$v.file_tmp_url}" alt="" style="height: 80px;object-fit: contain"></a></td>
                     <td>{$v.file_tmp_expire}</td>
                     <td class="tc">
                         {if condition="empty($v.file_tmp_expire)"}
@@ -70,6 +70,7 @@
                 {/foreach}
                 </tbody>
             </table>
+            {$list->render()}
             {/if}
         </div>
     </div>
@@ -113,9 +114,10 @@
         //文件上传
         layui.use('upload', function () {
             //执行实例
-            var uploadInst = upload.render({
+            let uploadInst = upload.render({
                 elem: '#uplaod',  //绑定元素
                 accept: 'file',
+                multiple: true,
                 url: '/Manage/Upload/file_upload',  //上传接口
                 before: function () {
                     //加载层-风格4
@@ -125,11 +127,30 @@
                         time: 0
                     });
                 },
+                allDone: function(obj) {
+                    setTimeout(function() {
+                        // 这里是延迟执行的代码
+                        layer.alert(obj.successful + '个文件已上传成功',{icon:1,closeBtn:0,title:false,btnAlign:'c',},function(){
+                            location.reload();
+                        });
+                    }, 2000);
+                },
                 done: function(res){
                     //上传完毕回调
                     if (res.code === 1) {
-                        layer.alert(res.msg,{icon:1,closeBtn:0,title:false,btnAlign:'c',},function(){
-                            location.reload();
+                        // layer.alert(res.msg,{icon:1,closeBtn:0,title:false,btnAlign:'c',},function(){
+                        //     location.reload();
+                        // });
+                        layer.msg('上传成功', {
+                            time: 1500, //1.5秒关闭（如果不配置，默认是3秒）
+                            shade: 0.3,
+                        }, function() {
+                            //加载层-风格4
+                            layer.msg('上传中，请勿关闭或刷新页面', {
+                                icon: 16,
+                                shade: 0.3,
+                                time: 0
+                            });
                         });
                     } else {
                         layer.alert(res.msg,{icon:2,closeBtn:0,title:false,btnAlign:'c'},function(){
