@@ -19,12 +19,6 @@
                     <input type="text" class="layui-input" name="product_name_cn">
                 </div>
             </div>
-            <div class="layui-form-item">
-                <label class="layui-form-label">目录名称</label>
-                <div class="layui-input-inline w300">
-                    <input type="text" class="layui-input" name="sku_file_name">
-                </div>
-            </div>
             <input type="hidden" name="seller_id" value="{$seller_id}">
             <div class="layui-form-item">
                 <div class="layui-input-block">

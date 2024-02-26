@@ -47,6 +47,7 @@ class SellerController extends BaseController
             $user = AccountModel::get(['id'=>Session::get(Config::get('USER_LOGIN_FLAG')), 'status' => AccountModel::STATUS_ACTIVE]);
             $post['painter_id'] = $user['id'];
             $post['state'] = SellerSkuModel::STATE_ACTIVE;
+            $post['sku_file_name'] = $post['product_sku'];
             $dataValidate = new SellerSkuValidate();
             if ($dataValidate->scene('add')->check($post)) {
                 $model = new SellerSkuModel();
